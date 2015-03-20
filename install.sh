@@ -7,7 +7,7 @@ bin="/usr/local/bin"
 # make in case they aren't already there
 sudo mkdir -p "/usr/local/lib"
 sudo mkdir -p "/usr/local/bin"
-sudo chown -R whoami /usr/local
+sudo chown -R `whoami` /usr/local
 
 # Copy the path
 sudo cp -R $dirname "$lib/"
