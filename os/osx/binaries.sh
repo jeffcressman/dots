@@ -31,6 +31,7 @@ binaries=(
   git
   git-flow
   graphicsmagick
+  heroku-toolbelt
   hub
   imagemagick
   node
@@ -43,7 +44,7 @@ binaries=(
   webkit2png
   wget
   zsh
-  zsh-completions	
+  zsh-completions
 )
 
 # Install the binaries
