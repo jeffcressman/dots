@@ -22,7 +22,6 @@ apps=(
   cyberduck
   cycling74-max
   daisydisk
-  dash
   data-rescue
   debt-quencher
   firefox
@@ -44,14 +43,11 @@ apps=(
   java
   jewelrybox
   jotta
-  kindle
   kitematic
-  lastpass
   launchcontrol
   lighttable
   livereload
   mamp
-  mindnode-pro
   miro-video-converter
   mplayerx
   omnifocus
@@ -62,7 +58,7 @@ apps=(
   pacifist
   parallels-desktop
   plex-home-theater
-  plex-media-server  
+  plex-media-server
   processing
   quicklook-csv
   quicklook-json
@@ -70,7 +66,6 @@ apps=(
   rescuetime
   ripit
   sequel-pro
-  skitch
   skype
   slack
   soundflower
