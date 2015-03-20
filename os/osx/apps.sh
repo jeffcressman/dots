@@ -37,7 +37,6 @@ apps=(
   heroku-toolbelt
   hipchat
   ichm
-  ipartition
   iphone-backup-extractor
   iphoto-library-manager
   istat-menus
