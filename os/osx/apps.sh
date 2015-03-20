@@ -15,7 +15,6 @@ apps=(
   charles
   chicken
   chromecast
-  chronomate
   cleanmymac
   colloquy
   comicbooklover
