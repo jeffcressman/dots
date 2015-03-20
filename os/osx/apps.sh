@@ -62,8 +62,7 @@ apps=(
   pacifist
   parallels-desktop
   plex-home-theater
-  plex-media-server
-  postico
+  plex-media-server  
   processing
   quicklook-csv
   quicklook-json
