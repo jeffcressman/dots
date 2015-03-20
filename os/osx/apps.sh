@@ -10,7 +10,6 @@ apps=(
   appzapper
   arq
   atom
-  balsamiq-mockups
   boom
   carbon-copy-cloner
   charles
