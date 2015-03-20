@@ -30,7 +30,8 @@ echo "This script will make your Mac awesome"
 #   "/System/Library/CoreServices/Menu Extras/Battery.menu" \
 #   "/System/Library/CoreServices/Menu Extras/Clock.menu"
 
-sudo chmod 600 /System/Library/CoreServices/Search.bundle/Contents/MacOS/Search
+# This will disable Spotlight Search!
+# sudo chmod 600 /System/Library/CoreServices/Search.bundle/Contents/MacOS/Search
 
 echo ""
 echo "Disabling OS X Gate Keeper"
