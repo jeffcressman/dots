@@ -42,6 +42,8 @@ binaries=(
   trash
   webkit2png
   wget
+  zsh
+  zsh-completions	
 )
 
 # Install the binaries
@@ -56,6 +58,9 @@ fi
 if test ! $(which spot); then
   curl -L https://raw.github.com/guille/spot/master/spot.sh -o /usr/local/bin/spot && chmod +x /usr/local/bin/spot
 fi
+
+# Install
+curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
 
 # Remove outdated versions from the cellar
 brew cleanup
