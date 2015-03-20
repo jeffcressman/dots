@@ -16,19 +16,19 @@ echo "This script will make your Mac awesome"
 # General UI/UX
 ###############################################################################
 
-echo ""
-echo "Hide the Time Machine, Volume, User, and Bluetooth icons"
-for domain in ~/Library/Preferences/ByHost/com.apple.systemuiserver.*; do
-  defaults write "${domain}" dontAutoLoad -array \
-    "/System/Library/CoreServices/Menu Extras/TimeMachine.menu" \
-    "/System/Library/CoreServices/Menu Extras/Volume.menu" \
-    "/System/Library/CoreServices/Menu Extras/User.menu"
-done
-defaults write com.apple.systemuiserver menuExtras -array \
-  "/System/Library/CoreServices/Menu Extras/Bluetooth.menu" \
-  "/System/Library/CoreServices/Menu Extras/AirPort.menu" \
-  "/System/Library/CoreServices/Menu Extras/Battery.menu" \
-  "/System/Library/CoreServices/Menu Extras/Clock.menu"
+# echo ""
+# echo "Hide the Time Machine, Volume, User, and Bluetooth icons"
+# for domain in ~/Library/Preferences/ByHost/com.apple.systemuiserver.*; do
+#   defaults write "${domain}" dontAutoLoad -array \
+#     "/System/Library/CoreServices/Menu Extras/TimeMachine.menu" \
+#     "/System/Library/CoreServices/Menu Extras/Volume.menu" \
+#     "/System/Library/CoreServices/Menu Extras/User.menu"
+# done
+# defaults write com.apple.systemuiserver menuExtras -array \
+#   "/System/Library/CoreServices/Menu Extras/Bluetooth.menu" \
+#   "/System/Library/CoreServices/Menu Extras/AirPort.menu" \
+#   "/System/Library/CoreServices/Menu Extras/Battery.menu" \
+#   "/System/Library/CoreServices/Menu Extras/Clock.menu"
 
 sudo chmod 600 /System/Library/CoreServices/Search.bundle/Contents/MacOS/Search
 
@@ -70,13 +70,13 @@ echo ""
 echo "Saving to disk (not to iCloud) by default"
 defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
 
-echo ""
-echo "Reveal IP address, hostname, OS version, etc. when clicking the clock in the login window"
-sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName
+# echo ""
+# echo "Reveal IP address, hostname, OS version, etc. when clicking the clock in the login window"
+# sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName
 
-echo ""
-echo "Never go into computer sleep mode"
-systemsetup -setcomputersleep Off > /dev/null
+# echo ""
+# echo "Never go into computer sleep mode"
+# systemsetup -setcomputersleep Off > /dev/null
 
 echo ""
 echo "Check for software updates daily, not just once per week"
@@ -92,9 +92,9 @@ defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
 # Trackpad, mouse, keyboard, Bluetooth accessories, and input
 ###############################################################################
 
-echo ""
-echo "Increasing sound quality for Bluetooth headphones/headsets"
-defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
+# echo ""
+# echo "Increasing sound quality for Bluetooth headphones/headsets"
+# defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
 
 echo ""
 echo "Enabling full keyboard access for all controls (e.g. enable Tab in modal dialogs)"
@@ -144,7 +144,7 @@ sudo defaults write /Library/Preferences/com.apple.windowserver DisplayResolutio
 
 echo ""
 echo "Showing icons for hard drives, servers, and removable media on the desktop"
-defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
+defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool false
 
 echo ""
 echo "Showing all filename extensions in Finder by default"
@@ -155,12 +155,22 @@ echo "Showing status bar in Finder by default"
 defaults write com.apple.finder ShowStatusBar -bool true
 
 echo ""
-echo "Allowing text selection in Quick Look/Preview in Finder by default"
-defaults write com.apple.finder QLEnableTextSelection -bool true
+echo "Showing path bar in Finder by default"
+defaults write com.apple.finder ShowPathbar -bool true
 
 echo ""
-echo "Displaying full POSIX path as Finder window title"
-defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
+echo "When performing a search, search the current folder by default"
+defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
+
+echo ""
+echo "Set Desktop as the default location for new Finder windows"
+echo "For other paths, use `PfLo` and `file:///full/path/here/`"
+defaults write com.apple.finder NewWindowTarget -string "PfDe"
+defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/Desktop/"
+
+echo ""
+echo "Allowing text selection in Quick Look/Preview in Finder by default"
+defaults write com.apple.finder QLEnableTextSelection -bool true
 
 echo ""
 echo "Disabling the warning when changing a file extension"
@@ -186,6 +196,23 @@ echo "Enabling snap-to-grid for icons on the desktop and in other icon views"
 /usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
 /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
 
+echo ""
+echo "Show the ~/Library folder"
+chflags nohidden ~/Library
+
+echo ""
+echo "Expand the following File Info panes:"
+echo " “General”, “Open with”, and “Sharing & Permissions”"
+defaults write com.apple.finder FXInfoPanesExpanded -dict \
+	General -bool true \
+	OpenWith -bool true \
+  Privileges -bool true
+
+echo ""
+echo "Wipe all (default) app icons from the Dock"
+# This is only really useful when setting up a new Mac, or if you don’t use
+# the Dock to launch apps.
+#defaults write com.apple.dock persistent-apps -array
 
 ###############################################################################
 # Dock & Mission Control
@@ -224,21 +251,21 @@ echo ""
 echo "Hiding Safariâ€™s sidebar in Top Sites"
 defaults write com.apple.Safari ShowSidebarInTopSites -bool false
 
-echo ""
-echo "Disabling Safariâ€™s thumbnail cache for History and Top Sites"
-defaults write com.apple.Safari DebugSnapshotsUpdatePolicy -int 2
+# echo ""
+# echo "Disabling Safariâ€™s thumbnail cache for History and Top Sites"
+# defaults write com.apple.Safari DebugSnapshotsUpdatePolicy -int 2
 
 echo ""
 echo "Enabling Safariâ€™s debug menu"
 defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
 
-echo ""
-echo "Making Safariâ€™s search banners default to Contains instead of Starts With"
-defaults write com.apple.Safari FindOnPageMatchesWordStartsOnly -bool false
+# echo ""
+# echo "Making Safariâ€™s search banners default to Contains instead of Starts With"
+# defaults write com.apple.Safari FindOnPageMatchesWordStartsOnly -bool false
 
-echo ""
-echo "Removing useless icons from Safariâ€™s bookmarks bar"
-defaults write com.apple.Safari ProxiesInBookmarksBar "()"
+# echo ""
+# echo "Removing useless icons from Safariâ€™s bookmarks bar"
+# defaults write com.apple.Safari ProxiesInBookmarksBar "()"
 
 echo ""
 echo "Allow hitting the Backspace key to go to the previous page in history"
@@ -268,11 +295,11 @@ defaults write com.apple.mail AddressesIncludeNameOnPasteboard -bool false
 # Terminal
 ###############################################################################
 
-echo ""
-echo "Enabling UTF-8 ONLY in Terminal.app and setting the Pro theme by default"
-defaults write com.apple.terminal StringEncodings -array 4
-defaults write com.apple.Terminal "Default Window Settings" -string "Pro"
-defaults write com.apple.Terminal "Startup Window Settings" -string "Pro"
+# echo ""
+# echo "Enabling UTF-8 ONLY in Terminal.app and setting the Pro theme by default"
+# defaults write com.apple.terminal StringEncodings -array 4
+# defaults write com.apple.Terminal "Default Window Settings" -string "Pro"
+# defaults write com.apple.Terminal "Startup Window Settings" -string "Pro"
 
 
 ###############################################################################
@@ -283,56 +310,56 @@ echo ""
 echo "Preventing Time Machine from prompting to use new hard drives as backup volume"
 defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
 
-echo ""
-echo "Disabling local Time Machine backups"
-hash tmutil &> /dev/null && sudo tmutil disablelocal
+# echo ""
+# echo "Disabling local Time Machine backups"
+# hash tmutil &> /dev/null && sudo tmutil disablelocal
 
 
 ###############################################################################
 # Messages                                                                    #
 ###############################################################################
 
-echo ""
-echo "Disable automatic emoji substitution (i.e. use plain text smileys)"
-defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add "automaticEmojiSubstitutionEnablediMessage" -bool false
+# echo ""
+# echo "Disable automatic emoji substitution (i.e. use plain text smileys)"
+# defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add "automaticEmojiSubstitutionEnablediMessage" -bool false
 
-echo ""
-echo "Disable smart quotes as itâ€™s annoying for messages that contain code"
-defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add "automaticQuoteSubstitutionEnabled" -bool false
-
-echo ""
-echo "Disable continuous spell checking"
-defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add "continuousSpellCheckingEnabled" -bool false
+# echo ""
+# echo "Disable smart quotes as itâ€™s annoying for messages that contain code"
+# defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add "automaticQuoteSubstitutionEnabled" -bool false
+#
+# echo ""
+# echo "Disable continuous spell checking"
+# defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add "continuousSpellCheckingEnabled" -bool false
 
 ###############################################################################
 # Personal Additions
 ###############################################################################
 
-echo ""
-echo "Disable hibernation (speeds up entering sleep mode)"
-sudo pmset -a hibernatemode 0
+# echo ""
+# echo "Disable hibernation (speeds up entering sleep mode)"
+# sudo pmset -a hibernatemode 0
 
-echo ""
-echo "Remove the sleep image file to save disk space"
-sudo rm /Private/var/vm/sleepimage
-echo "Creating a zero-byte file insteadâ€¦"
-sudo touch /Private/var/vm/sleepimage
-echo "â€¦and make sure it canâ€™t be rewritten"
-sudo chflags uchg /Private/var/vm/sleepimage
+# echo ""
+# echo "Remove the sleep image file to save disk space"
+# sudo rm /Private/var/vm/sleepimage
+# echo "Creating a zero-byte file insteadâ€¦"
+# sudo touch /Private/var/vm/sleepimage
+# echo "â€¦and make sure it canâ€™t be rewritten"
+# sudo chflags uchg /Private/var/vm/sleepimage
 
-echo ""
-echo "Disable the sudden motion sensor as itâ€™s not useful for SSDs"
-sudo pmset -a sms 0
+# echo ""
+# echo "Disable the sudden motion sensor as itâ€™s not useful for SSDs"
+# sudo pmset -a sms 0
 
 echo ""
 echo "Speeding up wake from sleep to 24 hours from an hour"
 # http://www.cultofmac.com/221392/quick-hack-speeds-up-retina-macbooks-wake-from-sleep-os-x-tips/
 sudo pmset -a standbydelay 86400
 
-echo ""
-echo "Disable computer sleep and stop the display from shutting off"
-sudo pmset -a sleep 0
-sudo pmset -a displaysleep 0
+# echo ""
+# echo "Disable computer sleep and stop the display from shutting off"
+# sudo pmset -a sleep 0
+# sudo pmset -a displaysleep 0
 
 echo ""
 echo "Disable annoying backswipe in Chrome"

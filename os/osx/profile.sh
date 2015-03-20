@@ -23,19 +23,13 @@ EDITOR="atom"
 
 # Default cd path for interactive shells
 if test “${PS1+set}”; then
-  CDPATH=:"..:~:~/Projects";
+  CDPATH=:"..:~:~/Code";
 fi
 
 # Add bash completion (for git and others)
 if [ -f `brew --prefix`/etc/bash_completion ]; then
     . `brew --prefix`/etc/bash_completion
 fi
-
-## Start an HTTP server from a directory, optionally specifying the port
-function server() {
-    local port="${1:-8000}"
-    open "http://localhost:${port}/" && python -m SimpleHTTPServer "$port"
-}
 
 git_branch() {
   # On branches, this will return the branch name
@@ -182,7 +176,7 @@ alias subl=atom
 ## gopen - open to own github
 
 function gopen() {
-  open "https://github.com/matthewmueller/${1}";
+  open "https://github.com/jeffcressman/${1}";
 }
 
 ## Open localhost
@@ -191,13 +185,13 @@ function ol() {
   open "http://localhost:${1:-3000}"
 }
 
-if [[ `node -v` =~ ^v0.11 ]]; then
-  alias node="node --harmony-generators"
-  alias node-dev="node-dev --harmony-generators"
-  alias mocha="mocha --harmony-generators"
-fi
+# if [[ `node -v` =~ ^v0.11 ]]; then
+#   alias node="node --harmony-generators"
+#   alias node-dev="node-dev --harmony-generators"
+#   alias mocha="mocha --harmony-generators"
+# fi
 
-alias wm="watch -q make &"
+# alias wm="watch -q make &"
 
 # Update the number of open files
 ulimit -n 1000

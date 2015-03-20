@@ -6,43 +6,94 @@ set -e
 
 # Apps
 apps=(
-  shimo
-  1password
-  alfred
-  dropbox
-  google-chrome
-  qlcolorcode
-  screenflick
-  slack
-  transmit
-  appcleaner
-  firefox
-  hazel
-  qlmarkdown
-  seil
-  spotify
-  vagrant
+  adobe-creative-cloud
+  appzapper
   arq
-  flash
-  iterm2
-  qlprettypatch
-  shiori
-  sublime-text3
-  virtualbox
   atom
+  balsamiq-mockups
+  boom
+  carbon-copy-cloner
+  charles
+  chicken
+  chromecast
+  chronomate
+  cleanmymac
+  colloquy
+  comicbooklover
+  copy
+  cyberduck
+  cycling74-max
+  daisydisk
+  dash
+  data-rescue
+  debt-quencher
+  firefox
   flux
-  mailbox
-  qlstephen
-  sketch
-  tower
-  vlc
-  cloudup
-  nvalt
-  quicklook-json
-  skype
-  transmission
-  apikitchen
+  gas-mask
+  gitbook
+  google-chrome
+  google-drive
+  google-earth
+  google-hangouts
+  handbrake
+  heroku-toolbelt
+  hipchat
+  ichm
+  ipartition
+  iphone-backup-extractor
+  iphoto-library-manager
+  istat-menus
+  iterm2
+  java
+  jewelrybox
+  kindle
+  kitematic
+  lastpass
+  launchcontrol
+  lighttable
+  livereload
   mamp
+  mindnode-pro
+  miro-video-converter
+  mplayerx
+  omnifocus
+  omnigraffle
+  onyx
+  osculator
+  osxfuse
+  pacifist
+  parallels-desktop
+  plex-home-theater
+  plex-media-server
+  postico
+  processing
+  quicklook-csv
+  quicklook-json
+  rdio
+  rescuetime
+  ripit
+  sequel-pro
+  skitch
+  skype
+  slack
+  soundflower
+  sourcetree
+  spectacle
+  spotify
+  sublime-text
+  sublime-text3
+  sync
+  terraform
+  torbrowser
+  tower
+  tower
+  transmit
+  unrarx
+  utorrent
+  vagrant
+  virtualbox
+  vlc
+  xscope
 )
 
 # fonts
@@ -54,31 +105,11 @@ fonts=(
 
 # Atom packages
 atom=(
-  advanced-railscasts-syntax
-  atom-beautify
-  cmd-9
+  dash
   color-picker
-  css-comb
-  docblockr
-  easy-motion
-  editor-stats
-  emmet
-  fancy-new-file
-  file-icons
-  git-history
-  highlight-selected
-  image-view
-  inc-dec-value
-  key-peek
-  language-jade
   linter
   markdown-preview
-  merge-conflicts
-  neutron-ui
-  npm-install
-  react
-  vim-mode
-  zentabs
+  sort-lines
 )
 
 # Specify the location of the apps
@@ -118,8 +149,6 @@ main() {
   echo "installing atom plugins..."
   apm install ${atom[@]}
 
-  # link with alfred
-  alfred
   cleanup
 }
 
@@ -128,10 +157,6 @@ homebrew() {
     echo "Installing homebrew..."
     ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   fi
-}
-
-alfred() {
-  brew cask alfred link
 }
 
 cleanup() {
