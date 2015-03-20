@@ -39,6 +39,7 @@ binaries=(
   phantomjs
   postgresql
   python
+  redis
   sshfs
   trash
   webkit2png
@@ -60,8 +61,16 @@ if test ! $(which spot); then
   curl -L https://raw.github.com/guille/spot/master/spot.sh -o /usr/local/bin/spot && chmod +x /usr/local/bin/spot
 fi
 
-# Install
+# Install Oh My Zsh
 curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
+
+# Install ember-cli and dependencies
+npm install -g ember-cli@0.1.15
+npm install -g watchman
+npm install -g bower
+
+# Add mackup
+pip install mackup
 
 # Remove outdated versions from the cellar
 brew cleanup
