@@ -43,6 +43,7 @@ apps=(
   iterm2
   java
   jewelrybox
+  jotta
   kindle
   kitematic
   lastpass
